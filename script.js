@@ -4,7 +4,7 @@ function computerPlay()
     return options[Math.floor(Math.random() * 3)];
 }
 
-function playround(playerSelection, computerSelection)
+function playRound(playerSelection, computerSelection)
 {
     playerSelection = playerSelection.toLowerCase();
 
@@ -29,12 +29,32 @@ function playround(playerSelection, computerSelection)
 }
 
 
-let input = " "
-while(input!= "Q")
-{
-    input = prompt("Welcome to Rock, paper Scissors! Enter your weapon or \"q\" to quit.");
-    console.log("HINT: computer chose " +computer)
-    computer = computerPlay();
-    result = playround(input, computer);
-    console.log(result);
-}
+
+
+    const r = document.querySelector('#r');
+    const p = document.querySelector('#p');
+    const s = document.querySelector('#s');
+
+    r.addEventListener('click', () => 
+    {
+        computer = computerPlay();
+        console.log("computer chose " +computer)
+        result = playRound("rock", computer)
+        console.log (result);
+    });
+
+    p.addEventListener('click', () => 
+    {
+        computer = computerPlay();
+        console.log("computer chose " +computer)
+        result = playRound("paper", computer)
+        console.log (result);
+    });
+
+    s.addEventListener('click', () => 
+    {
+        computer = computerPlay();
+        console.log("computer chose " +computer)
+        result = playRound("scissors", computer)
+        console.log (result);
+    });
