@@ -74,8 +74,6 @@ function resetGame()
     if((playerScore==5) || computerScore == 5)
     {
         modal.style.display = "block";
-        playerScore = 0;
-        computerScore = 0;
         span.onclick = function() {
             modal.style.display = "none";
           }
@@ -83,11 +81,13 @@ function resetGame()
             MODAL_TEXT.textContent = "You Win!";
             MODAL_TEXT.style.color = 'green';
           }
-          else{
+          else if (computerScore == 5){
             MODAL_TEXT.textContent = "You Lose!";
             MODAL_TEXT.style.color = 'red';
           }
         updateScore(0,0);
+        playerScore = 0;
+        computerScore = 0;
     }
 }
 
