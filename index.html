@@ -11,15 +11,36 @@
 
     <body>
         <h1 class = header> Rock Paper Scissors!</h1>
-        <h3>Choose your weapon wisely:</h3>
-        <div class="buttons">
-            <button id = "r">Rock</button> 
-            <button id = "p">Paper</button>
-            <button id = "s">Scissors</button>
+        <h3>Select your weapon by ckicking a button on the left...</h3>
+        <div class = "middle">
+            <div class="playerSide"> 
+                <div class="buttons">
+                    <h2 class = "miniheadings">You 👨:</h2>
+                    <button id = "r">✊</button> 
+                    <button id = "p">✋</button>
+                    <button id = "s">✌</button>
+                </div>
+            </div>
+            <div class="VS">VS.</div>
+            <div class = "computerSide">
+                <h2 class = "miniheadings">Computer 💻:</h2>
+                <button id = "computerSelection">?</button>
+            </div>
         </div>
         <div class = footer>
             <div id = "score"> Score: 0-0</div>
             <div id = "roundWinner"></div>
+        </div>
+
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              
+              <h2 id = "MODAL_TEXT"></h3>
+              <btn id="close">Play Again</span>
+            </div>
+          
         </div>
     </body>
 </html>
