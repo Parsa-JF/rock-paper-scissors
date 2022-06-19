@@ -28,33 +28,115 @@ function playRound(playerSelection, computerSelection)
     else return "invalid input";
 }
 
+let result = ""
+playerScore = 0;
+computerScore = 0;
+const r = document.querySelector('#r');
+const p = document.querySelector('#p');
+const s = document.querySelector('#s');
+const winner = document.querySelector('#winner');
+
+function updateScore(pScore, cScore)
+{
+    const score = document.querySelector('#score');
+    score.textContent = "Score: "+pScore+"-"+cScore;
+}
 
 
-
-    const r = document.querySelector('#r');
-    const p = document.querySelector('#p');
-    const s = document.querySelector('#s');
 
     r.addEventListener('click', () => 
     {
         computer = computerPlay();
-        console.log("computer chose " +computer)
-        result = playRound("rock", computer)
-        console.log (result);
+        console.log("computer chose " +computer);
+        result = playRound("rock", computer);
+  
+        if(result == "computer wins")
+        {
+            computerScore++;
+        }
+        else if(result == "player wins")
+        {
+            playerScore++;
+        }
+        updateScore(playerScore, computerScore);
+
+        if(computerScore == 5)
+        {
+            playerScore = 0;
+            computerScore = 0;
+            winner.textContent = "Computer Wins!"
+        }
+        if(playerScore == 5)
+        {
+            playerScore = 0;
+            computerScore = 0;
+            winner.textContent = "Player Wins!"
+        }
     });
 
     p.addEventListener('click', () => 
     {
         computer = computerPlay();
-        console.log("computer chose " +computer)
-        result = playRound("paper", computer)
-        console.log (result);
+        console.log("computer chose " +computer);
+        result = playRound("paper", computer);
+
+        if(result == "computer wins")
+        {
+            computerScore++;
+        }
+        else if(result == "player wins")
+        {
+            playerScore++;
+        }
+        updateScore(playerScore, computerScore);
+
+        if(computerScore == 5)
+        {
+            playerScore = 0;
+            computerScore = 0;
+            winner.textContent = "Computer Wins!"
+        }
+        if(playerScore == 5)
+        {
+            playerScore = 0;
+            computerScore = 0;
+            winner.textContent = "Player Wins!"
+        }
+
+        
     });
 
     s.addEventListener('click', () => 
     {
         computer = computerPlay();
-        console.log("computer chose " +computer)
-        result = playRound("scissors", computer)
-        console.log (result);
+        console.log("computer chose " +computer);
+        result = playRound("scissors", computer);
+
+        if(result == "computer wins")
+        {
+            computerScore++;
+        }
+        else if(result == "player wins")
+        {
+            playerScore++;
+        }
+        updateScore(playerScore, computerScore);
+
+        if(computerScore == 5)
+        {
+            playerScore = 0;
+            computerScore = 0;
+            winner.textContent = "Computer Wins!"
+        }
+        if(playerScore == 5)
+        {
+            playerScore = 0;
+            computerScore = 0;
+            winner.textContent = "Player Wins!"
+        }
     });
+
+ 
+
+    
+
