@@ -1,3 +1,8 @@
+var result = ""
+var playerScore = 0;
+var computerScore = 0;
+var roundWinner = "";
+
 function computerPlay()
 {
     options = ["rock", "paper", "scissors"];
@@ -8,33 +13,42 @@ function playRound(playerSelection, computerSelection)
 {
     playerSelection = playerSelection.toLowerCase();
 
-    if(playerSelection == computerSelection)
-    {return "draw";}
-    else if(playerSelection == "rock")
+    if (computerSelection == playerSelection)
+    { 
+        computerScore+=0;
+        playerScore+=0;
+        roundWinner = "Draw!";
+    }
+    else if (playerSelection == "rock")
     {
-        if (computerSelection == "paper"){return "computer wins"}
-        else return "player wins"
+        if (computerSelection == "paper"){computerScore++; roundWinner = "Computer Won!";}
+        else {playerScore++; roundWinner = "Player Won!";}
     }
     else if(playerSelection == "paper")
     {
-        if (computerSelection == "scissors"){return "computer wins"}
-        else return "player wins"
+        if (computerSelection == "scissors"){computerScore++; roundWinner = "Computer Won!";}
+        else {playerScore++; roundWinner = "Player Won!";}
     }
     else if (playerSelection == "scissors")
     {
-        if (computerSelection == "rock"){return "computer wins"}
-        else return "player wins"
+        if (computerSelection == "rock"){computerScore++; roundWinner = "Computer Won!";}
+        else {playerScore++; roundWinner = "Player Won!";}
     }
-    else return "invalid input";
+
 }
 
-let result = ""
-playerScore = 0;
-computerScore = 0;
+
 const r = document.querySelector('#r');
 const p = document.querySelector('#p');
 const s = document.querySelector('#s');
-const winner = document.querySelector('#winner');
+const ROUNDWINNER = document.querySelector('#roundWinner');
+
+
+function displayRoundWinner()
+{
+    ROUNDWINNER.textContent = roundWinner; 
+}
+
 
 function updateScore(pScore, cScore)
 {
@@ -42,99 +56,43 @@ function updateScore(pScore, cScore)
     score.textContent = "Score: "+pScore+"-"+cScore;
 }
 
-
-
-    r.addEventListener('click', () => 
+function resetGame()
+{
+    if((playerScore==5) || computerScore == 5)
     {
-        computer = computerPlay();
-        console.log("computer chose " +computer);
-        result = playRound("rock", computer);
-  
-        if(result == "computer wins")
-        {
-            computerScore++;
-        }
-        else if(result == "player wins")
-        {
-            playerScore++;
-        }
-        updateScore(playerScore, computerScore);
+        playerScore = 0;
+        computerScore = 0;
+    }
+}
 
-        if(computerScore == 5)
-        {
-            playerScore = 0;
-            computerScore = 0;
-            winner.textContent = "Computer Wins!"
-        }
-        if(playerScore == 5)
-        {
-            playerScore = 0;
-            computerScore = 0;
-            winner.textContent = "Player Wins!"
-        }
-    });
+function executeButton(playerInput)
+{
+    computerInput = computerPlay();
+    playRound(playerInput, computerInput);
+    updateScore(playerScore, computerScore);
+    console.log("you chose " +playerInput+ " and computer chose " + computerInput)
+    resetGame();
+    displayRoundWinner();
+}
 
-    p.addEventListener('click', () => 
-    {
-        computer = computerPlay();
-        console.log("computer chose " +computer);
-        result = playRound("paper", computer);
 
-        if(result == "computer wins")
-        {
-            computerScore++;
-        }
-        else if(result == "player wins")
-        {
-            playerScore++;
-        }
-        updateScore(playerScore, computerScore);
 
-        if(computerScore == 5)
-        {
-            playerScore = 0;
-            computerScore = 0;
-            winner.textContent = "Computer Wins!"
-        }
-        if(playerScore == 5)
-        {
-            playerScore = 0;
-            computerScore = 0;
-            winner.textContent = "Player Wins!"
-        }
 
-        
-    });
 
-    s.addEventListener('click', () => 
-    {
-        computer = computerPlay();
-        console.log("computer chose " +computer);
-        result = playRound("scissors", computer);
+r.addEventListener('click', () => 
+{
+    executeButton("rock");
+});
 
-        if(result == "computer wins")
-        {
-            computerScore++;
-        }
-        else if(result == "player wins")
-        {
-            playerScore++;
-        }
-        updateScore(playerScore, computerScore);
+p.addEventListener('click', () => 
+{
+    executeButton("paper");
+});
 
-        if(computerScore == 5)
-        {
-            playerScore = 0;
-            computerScore = 0;
-            winner.textContent = "Computer Wins!"
-        }
-        if(playerScore == 5)
-        {
-            playerScore = 0;
-            computerScore = 0;
-            winner.textContent = "Player Wins!"
-        }
-    });
+s.addEventListener('click', () => 
+{
+    executeButton("scissors");
+});
 
  
 
